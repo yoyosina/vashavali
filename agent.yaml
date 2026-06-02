@@ -16,7 +16,9 @@ subagents:
     description: >
       Responsible for writing, editing, refactoring, and implementing application 
       source code. Executes tasks precisely according to the technical requirements 
-      and version scope provided by the ProjectManager.
+      and version scope provided by the ProjectManager. STRICT RULE: Must respect 
+      Semantic Versioning (SemVer) and coordinate with the Documenter to bump 
+      versions via 'npm version' before code is committed.
     tools:
       - code_editor
       - code_execution
@@ -42,7 +44,9 @@ subagents:
       user guides containing step-by-step app usage instructions and automated visual screenshots. 
       Manages version control logs by compiling exactly what features were added or what bugs 
       were fixed per milestone. Maintains the repository documentation (README.md) and handles 
-      pushing/uploading code blocks to GitHub.
+      pushing/uploading code blocks to GitHub. STRICT RULE: Enforces Semantic Versioning (SemVer) 
+      by executing 'npm version <major|minor|patch>' to update package.json and generate git tags 
+      before committing or pushing code.
     tools:
       - git_tools
       - terminal
