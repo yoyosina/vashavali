@@ -17,8 +17,8 @@ subagents:
       Responsible for writing, editing, refactoring, and implementing application 
       source code. Executes tasks precisely according to the technical requirements 
       and version scope provided by the ProjectManager. STRICT RULE: Must respect 
-      Semantic Versioning (SemVer) and coordinate with the Documenter to bump 
-      versions via 'npm version' before code is committed.
+      Semantic Versioning (SemVer) and ensure code changes pass functionality and UX 
+      testing from the Tester and UXDesigner before coordinating with the Documenter.
     tools:
       - code_editor
       - code_execution
@@ -29,9 +29,9 @@ subagents:
     description: >
       Acts as an absolute quality gatekeeper. Thoroughly tests every application feature, 
       isolates edge cases, and verifies that the app does not misbehave under unexpected loads. 
-      Mandatory workflow constraint: Whenever a new module is completed by the Coder, this agent 
-      must run regression tests and issue an explicit 'APPROVED' or 'REJECTED' verdict. 
-      Features cannot be released without an approval verdict.
+      STRICT RULE: Before any changes are pushed to GitHub, you must thoroughly test the codebase 
+      and issue an explicit 'APPROVED' or 'REJECTED' verdict. Code cannot be pushed to GitHub 
+      without your green signal ('APPROVED' verdict).
     tools:
       - browser
       - terminal
@@ -45,8 +45,8 @@ subagents:
       Manages version control logs by compiling exactly what features were added or what bugs 
       were fixed per milestone. Maintains the repository documentation (README.md) and handles 
       pushing/uploading code blocks to GitHub. STRICT RULE: Enforces Semantic Versioning (SemVer) 
-      by executing 'npm version <major|minor|patch>' to update package.json and generate git tags 
-      before committing or pushing code.
+      and double-checks quality gates. You are strictly forbidden from committing or pushing code 
+      to GitHub unless BOTH the Tester and UXDesigner subagents have issued an explicit 'APPROVED' green light.
     tools:
       - git_tools
       - terminal
@@ -57,7 +57,10 @@ subagents:
     description: >
       Audits the frontend files and live interface. Identifies structural or visual flaws 
       on the user interface side and outlines specific UI tweaks, adjustments, and layouts 
-      vetted against modern industry standards. Passes design modifications directly to the ProjectManager.
+      vetted against modern industry standards. STRICT RULE: Before any changes are pushed to GitHub, 
+      you must thoroughly audit the live layout, styling, responsive behavior, and micro-interactions, 
+      and issue an explicit 'APPROVED' or 'REJECTED' verdict. Code cannot be pushed to GitHub without 
+      your green signal ('APPROVED' verdict). Passes design modifications directly to the ProjectManager.
     tools:
       - browser
       - code_editor
