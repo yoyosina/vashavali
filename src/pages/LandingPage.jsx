@@ -63,6 +63,12 @@ const LandingPage = () => {
         <p className="hero-subtitle">
           An exclusive, ultra-secure platform to map your ancestry and connect generations.
         </p>
+        <div style={{ marginTop: '2rem', display: 'flex', justifyContent: 'center' }}>
+          <Link to="/demo" className="btn-primary" style={{ padding: '1rem 2.5rem', fontSize: '1.1rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+            <Users size={20} />
+            Explore Interactive Demo
+          </Link>
+        </div>
       </motion.div>
 
       <motion.div 

@@ -323,16 +323,13 @@ const PersonalProfile = () => {
           <ArrowLeft size={20} /> Back to Tree
         </button>
 
-        {user && (
-          <div style={{ display: 'flex', gap: '1rem' }}>
-            <button className="btn-secondary" onClick={() => setIsEditModalOpen(true)} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <Edit size={16} /> Edit Profile
-            </button>
-            <button className="btn-reject" onClick={handleDeleteRequest} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', background: 'rgba(239, 68, 68, 0.1)' }}>
-              <Trash2 size={16} /> Request Deletion
-            </button>
-          </div>
-        )}
+        <div style={{ display: 'flex', gap: '1rem' }}>
+          <button className="btn-secondary" onClick={() => !user ? navigate('/auth') : setIsEditModalOpen(true)}>Edit Profile</button>
+          <button className="btn-secondary" onClick={() => !user ? navigate('/auth') : setIsMilestoneModalOpen(true)}>Add Milestone</button>
+          <button className="btn-reject" onClick={handleDeleteRequest} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', background: 'rgba(239, 68, 68, 0.1)' }}>
+            <Trash2 size={16} /> Request Deletion
+          </button>
+        </div>
       </div>
       
       <div className="profile-content">

@@ -16,6 +16,14 @@ import Approvals from './pages/Approvals';
 import AddMemberModal from './components/AddMemberModal';
 import ManageTrees from './pages/ManageTrees';
 
+const DemoOrFamilyGate = ({ children }) => {
+  const { familyCode } = useParams();
+  if (familyCode && familyCode.toLowerCase() === 'demo') {
+    return children;
+  }
+  return <FamilyAccessGate>{children}</FamilyAccessGate>;
+};
+
 function App() {
   const location = useLocation();
   const navigate = useNavigate();
@@ -74,27 +82,35 @@ function App() {
             </Link>
           )}
           
+          {familyCode === 'demo' ? (
+            <button className="nav-link" onClick={() => !user ? navigate(`/auth`) : setIsModalOpen(true)}>
+              <Users size={20} />
+              <span>Add Member</span>
+            </button>
+          ) : familyCode ? (
+            user ? (
+              <>
+                {currentUserMember ? (
+                  <button className="nav-link" onClick={() => setIsModalOpen(true)}>
+                    <Users size={20} />
+                    <span>Add Member</span>
+                  </button>
+                ) : (
+                  <button className="nav-link" onClick={() => setIsModalOpen(true)} style={{color: 'var(--color-accent-gold)', border: '1px solid var(--color-accent-gold)'}}>
+                    <Users size={20} />
+                    <span>Join Family Tree</span>
+                  </button>
+                )}
+                <Link to={`/${familyCode}/approvals`} className={`nav-link ${location.pathname === `/${familyCode}/approvals` ? 'active' : ''}`}>
+                  <CheckSquare size={20} />
+                  <span>Approvals</span>
+                </Link>
+              </>
+            ) : null
+          ) : null}
+          
           {user ? (
             <>
-              {familyCode && (
-                <>
-                  {currentUserMember ? (
-                    <button className="nav-link" onClick={() => setIsModalOpen(true)}>
-                      <Users size={20} />
-                      <span>Add Member</span>
-                    </button>
-                  ) : (
-                    <button className="nav-link" onClick={() => setIsModalOpen(true)} style={{color: 'var(--color-accent-gold)', border: '1px solid var(--color-accent-gold)'}}>
-                      <Users size={20} />
-                      <span>Join Family Tree</span>
-                    </button>
-                  )}
-                  <Link to={`/${familyCode}/approvals`} className={`nav-link ${location.pathname === `/${familyCode}/approvals` ? 'active' : ''}`}>
-                    <CheckSquare size={20} />
-                    <span>Approvals</span>
-                  </Link>
-                </>
-              )}
               <Link to="/manage-trees" className={`nav-link ${location.pathname === '/manage-trees' ? 'active' : ''}`}>
                 <Shield size={20} />
                 <span>Manage Tree</span>
@@ -125,13 +141,13 @@ function App() {
           <Route path="/manage-trees" element={<ManageTrees />} />
           
           <Route path="/:familyCode/*" element={
-            <FamilyAccessGate>
+            <DemoOrFamilyGate>
               <Routes>
                 <Route path="/" element={<FamilyTreeCanvas />} />
                 <Route path="/profile/:id" element={<PersonalProfile />} />
                 <Route path="/approvals" element={user ? <Approvals /> : <Auth />} />
               </Routes>
-            </FamilyAccessGate>
+            </DemoOrFamilyGate>
           } />
         </Routes>
       </main>
