@@ -1,0 +1,243 @@
+.profile-container {
+  height: 100%;
+  width: 100%;
+  overflow-y: auto;
+  padding: 6rem 2rem 2rem;
+}
+
+.back-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  color: var(--color-text-primary);
+  margin-bottom: 2rem;
+  transition: color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.back-button:hover {
+  color: var(--color-accent-gold);
+  border-color: var(--color-accent-gold);
+}
+
+.profile-content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+@media (min-width: 1024px) {
+  .profile-content {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .profile-header, .profile-gallery, .profile-timeline, .profile-minitree {
+    grid-column: 1 / -1;
+  }
+}
+
+.profile-header {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2rem;
+}
+
+@media (min-width: 768px) {
+  .profile-header {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+}
+
+.profile-hero-image {
+  flex-shrink: 0;
+  width: 200px;
+  height: 200px;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 3px solid var(--color-accent-gold);
+}
+
+.profile-hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-info {
+  flex: 1;
+}
+
+.profile-info h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.life-dates {
+  font-size: 1.2rem;
+  color: var(--color-text-muted);
+  margin-bottom: 1.5rem;
+}
+
+.bio-section h3, 
+.profile-timeline h3, 
+.profile-gallery h3,
+.profile-minitree h3 {
+  color: var(--color-accent-gold);
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+}
+
+.bio-section p {
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  font-size: 1.1rem;
+}
+
+.profile-timeline, .profile-gallery, .profile-minitree {
+  padding: 2rem;
+}
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  position: relative;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 3px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--color-border);
+}
+
+.timeline-item {
+  display: flex;
+  flex-direction: column;
+  padding-left: 20px;
+  position: relative;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 6px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-accent-gold);
+}
+
+.timeline-year {
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: 0.25rem;
+}
+
+.timeline-event {
+  color: var(--color-text-secondary);
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 1rem;
+}
+
+.gallery-carousel {
+  display: flex;
+  overflow-x: auto;
+  gap: 1rem;
+  padding-bottom: 1rem;
+  scroll-snap-type: x mandatory;
+}
+
+.gallery-carousel::-webkit-scrollbar {
+  height: 8px;
+}
+
+.gallery-carousel::-webkit-scrollbar-track {
+  background: var(--color-bg-base);
+  border-radius: 4px;
+}
+
+.gallery-carousel::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 4px;
+}
+
+.gallery-item {
+  aspect-ratio: 1;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  cursor: pointer;
+  flex: 0 0 150px;
+  scroll-snap-align: start;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-normal);
+}
+
+.gallery-item:hover img {
+  transform: scale(1.05);
+}
+
+.gallery-add-tile, .gallery-show-all-tile {
+  aspect-ratio: 1;
+  border-radius: 12px;
+  border: 2px dashed var(--color-border);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex: 0 0 150px;
+  transition: border-color var(--transition-fast), background var(--transition-fast);
+  color: var(--color-text-muted);
+  scroll-snap-align: start;
+}
+
+.gallery-add-tile:hover, .gallery-show-all-tile:hover {
+  border-color: var(--color-accent-gold);
+  color: var(--color-accent-gold);
+  background: rgba(212, 175, 55, 0.05);
+}
+
+.gallery-add-tile .add-icon, .gallery-show-all-tile .add-icon {
+  font-size: 3rem;
+  font-weight: 300;
+  line-height: 1;
+}
+
+.gallery-show-all-tile span {
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+  font-weight: 500;
+}
+
+.minitree-wrapper {
+  aspect-ratio: 16/9;
+  min-height: 300px;
+  max-height: 500px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  background: var(--color-bg-base);
+}
+
+.text-muted {
+  color: var(--color-text-muted);
+}

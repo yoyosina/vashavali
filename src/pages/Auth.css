@@ -1,0 +1,40 @@
+.auth-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  padding: 2rem;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 400px;
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.auth-card h2 {
+  text-align: center;
+  font-size: 2rem;
+  margin: 0;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.toggle-auth {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  text-align: center;
+  transition: color var(--transition-fast);
+}
+
+.toggle-auth:hover {
+  color: var(--color-accent-gold);
+}

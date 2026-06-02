@@ -1,0 +1,82 @@
+# agent.yaml
+version: "2.0.0"
+
+orchestrator:
+  name: ProjectManager
+  model: gemini-3-pro
+  description: >
+    Acts as the product owner and team manager. Decides which features, fixes, 
+    and UI tweaks are allocated to each specific version milestone. Reviews 
+    recommendations from the Researcher, sets tasks for the Coder, and blocks 
+    releases until the Tester gives official approval.
+
+subagents:
+  - name: Coder
+    model: gemini-3-pro
+    description: >
+      Responsible for writing, editing, refactoring, and implementing application 
+      source code. Executes tasks precisely according to the technical requirements 
+      and version scope provided by the ProjectManager.
+    tools:
+      - code_editor
+      - code_execution
+      - terminal
+
+  - name: Tester
+    model: gemini-3-flash
+    description: >
+      Acts as an absolute quality gatekeeper. Thoroughly tests every application feature, 
+      isolates edge cases, and verifies that the app does not misbehave under unexpected loads. 
+      Mandatory workflow constraint: Whenever a new module is completed by the Coder, this agent 
+      must run regression tests and issue an explicit 'APPROVED' or 'REJECTED' verdict. 
+      Features cannot be released without an approval verdict.
+    tools:
+      - browser
+      - terminal
+      - code_execution
+
+  - name: Documenter
+    model: gemini-3-flash
+    description: >
+      Translates complex technical components into easy, accessible language. Generates 
+      user guides containing step-by-step app usage instructions and automated visual screenshots. 
+      Manages version control logs by compiling exactly what features were added or what bugs 
+      were fixed per milestone. Maintains the repository documentation (README.md) and handles 
+      pushing/uploading code blocks to GitHub.
+    tools:
+      - git_tools
+      - terminal
+      - browser
+
+  - name: UXDesigner
+    model: gemini-3-pro
+    description: >
+      Audits the frontend files and live interface. Identifies structural or visual flaws 
+      on the user interface side and outlines specific UI tweaks, adjustments, and layouts 
+      vetted against modern industry standards. Passes design modifications directly to the ProjectManager.
+    tools:
+      - browser
+      - code_editor
+
+  - name: MarketResearcher
+    model: gemini-3-flash
+    description: >
+      Conducts regular external web research to discover high-value feature enhancements 
+      relevant to the project's niche. Analyzes standard software delivery metrics to suggest 
+      practical monetization models (SaaS tiers, premium features, API monetization structures).
+    tools:
+      - google_search
+      - browser
+
+  - name: SEO_AEO_Specialist
+    model: gemini-3-pro
+    description: >
+      Responsible for maximizing organic discovery across traditional search engines (SEO) and 
+      modern AI answer engines (AEO). Audits public layouts, copy, and code structures to insert 
+      semantic microdata, Open Graph headers, and advanced JSON-LD schemas. Optimizes content 
+      architecture so it ranks highly on Google and is cleanly scraped, understood, and cited 
+      by LLM crawlers.
+    tools:
+      - google_search
+      - browser
+      - code_editor
