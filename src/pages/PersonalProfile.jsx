@@ -75,7 +75,10 @@ const PersonalProfile = () => {
     const files = Array.from(e.target.files);
     if (!files.length) return;
 
-    if (!window.confirm(`Propose adding ${files.length} image(s) to ${member.firstName}'s gallery? It will be sent for approval.`)) return;
+    if (!window.confirm(`Propose adding ${files.length} image(s) to ${member.firstName}'s gallery? It will be sent for approval.`)) {
+      e.target.value = null;
+      return;
+    }
 
     setUploadingMedia(true);
     const uploadedUrls = [];
@@ -95,6 +98,7 @@ const PersonalProfile = () => {
       }));
     } catch (err) {
       setUploadingMedia(false);
+      e.target.value = null;
       return alert('Error uploading images: ' + err.message);
     }
 
@@ -117,6 +121,7 @@ const PersonalProfile = () => {
     }]);
 
     setUploadingMedia(false);
+    e.target.value = null;
     
     if (error) {
       alert('Error submitting request: ' + error.message);
@@ -354,20 +359,22 @@ const PersonalProfile = () => {
           </div>
           
           <div className={showAllGallery ? "gallery-grid" : "gallery-carousel"}>
-            {user && (
-              <div className="gallery-add-tile" onClick={() => !uploadingMedia && document.getElementById('media-upload').click()}>
-                <input 
-                  type="file" 
-                  id="media-upload" 
-                  accept="image/*" 
-                  multiple
-                  style={{ display: 'none' }} 
-                  onChange={handleAddMedia} 
-                  disabled={uploadingMedia}
-                />
-                <div className="add-icon">+</div>
-              </div>
-            )}
+            <div className="gallery-add-tile" onClick={() => {
+              if (!user) { navigate('/auth'); return; }
+              if (!uploadingMedia) document.getElementById('media-upload').click();
+            }}>
+              <input 
+                type="file" 
+                id="media-upload" 
+                accept="image/*" 
+                multiple
+                style={{ display: 'none' }} 
+                onChange={handleAddMedia} 
+                onClick={(e) => e.stopPropagation()}
+                disabled={uploadingMedia}
+              />
+              <div className="add-icon">+</div>
+            </div>
 
             {member.gallery && member.gallery
               .slice(0, showAllGallery ? undefined : 8)

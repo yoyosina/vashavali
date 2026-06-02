@@ -30,6 +30,11 @@ async function seedTree() {
   function createMember(gender, birthYear) {
     const { first, last } = randomName(gender);
     const memberId = crypto.randomUUID();
+    
+    // Generate 1 to 8 random demo images for the gallery
+    const numImages = Math.floor(Math.random() * 8) + 1;
+    const gallery = Array.from({ length: numImages }).map((_, i) => `https://picsum.photos/seed/${memberId}-${i}/400/400`);
+
     members.push({
       id: memberId,
       family_id: familyId,
@@ -41,7 +46,8 @@ async function seedTree() {
       milestones: [
         { year: (parseInt(birthYear) + 18).toString(), event: 'Graduated High School' },
         { year: (parseInt(birthYear) + 22).toString(), event: 'Completed University Degree' }
-      ]
+      ],
+      gallery: gallery
     });
     return memberId;
   }
@@ -85,8 +91,8 @@ async function seedTree() {
   
   let sql = `-- Clear existing data\nDELETE FROM public.relationships WHERE family_id = '${familyId}';\nDELETE FROM public.members WHERE family_id = '${familyId}';\n\n`;
 
-  sql += `-- Insert Members\nINSERT INTO public.members (id, family_id, first_name, last_name, birth_date, image_url, bio, milestones) VALUES \n`;
-  const memberValues = members.map(m => `('${m.id}', '${m.family_id}', '${m.first_name}', '${m.last_name}', '${m.birth_date}', '${m.image_url}', '${m.bio.replace(/'/g, "''")}', '${JSON.stringify(m.milestones)}'::jsonb)`);
+  sql += `-- Insert Members\nINSERT INTO public.members (id, family_id, first_name, last_name, birth_date, image_url, bio, milestones, gallery) VALUES \n`;
+  const memberValues = members.map(m => `('${m.id}', '${m.family_id}', '${m.first_name}', '${m.last_name}', '${m.birth_date}', '${m.image_url}', '${m.bio.replace(/'/g, "''")}', '${JSON.stringify(m.milestones)}'::jsonb, ARRAY[${m.gallery.map(url => `'${url}'`).join(', ')}]::text[])`);
   sql += memberValues.join(',\n') + ';\n\n';
 
   sql += `-- Insert Relationships\nINSERT INTO public.relationships (family_id, source_id, target_id, type) VALUES \n`;
