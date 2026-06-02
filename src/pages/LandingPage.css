@@ -1,7 +1,6 @@
 /* Base Overrides for Awwwards Feel */
 body, html {
   scroll-behavior: smooth;
-  overflow-x: hidden;
 }
 
 

@@ -1,11 +1,8 @@
-import { createClient } from '@supabase/supabase-js';
-import dotenv from 'dotenv';
+import fs from 'fs';
 import path from 'path';
+import crypto from 'crypto';
 
-dotenv.config({ path: path.resolve(process.cwd(), '.env.local') });
-
-const supabase = createClient(process.env.VITE_SUPABASE_URL, process.env.VITE_SUPABASE_ANON_KEY);
-
+// No need for supabase client anymore
 const firstNamesM = ["Aarav", "Vihaan", "Aditya", "Sai", "Arjun", "Reyansh", "Ayaan", "Krishna", "Ishaan", "Shaurya", "Rudra", "Kabir", "Dhruv", "Ansh", "Aryan"];
 const firstNamesF = ["Aadya", "Diya", "Pari", "Ananya", "Myra", "Saanvi", "Kiara", "Prisha", "Riya", "Avni", "Aanya", "Kavya", "Navya", "Meera", "Zara"];
 const lastNames = ["Sharma", "Verma", "Gupta", "Singh", "Kapoor", "Chopra", "Malhotra", "Joshi", "Patel", "Kumar", "Mishra", "Pandey"];
@@ -23,18 +20,7 @@ function randomYear(min, max) {
 async function seedTree() {
   console.log("Seeding Demo Tree...");
 
-  // 1. Ensure Family exists
-  let familyId;
-  const { data: existingFamily } = await supabase.from('families').select('id').eq('code', 'demo').maybeSingle();
-  if (existingFamily) {
-    familyId = existingFamily.id;
-    // Clear existing data for fresh seed
-    await supabase.from('relationships').delete().eq('family_id', familyId);
-    await supabase.from('members').delete().eq('family_id', familyId);
-  } else {
-    const { data: newFam } = await supabase.from('families').insert([{ name: 'The Vanshavali Demo Family', code: 'demo' }]).select().single();
-    familyId = newFam.id;
-  }
+  const familyId = '648d745a-2101-4e1b-96be-b32f3cb2f09c';
 
   const members = [];
   const relationships = [];
@@ -43,7 +29,7 @@ async function seedTree() {
 
   function createMember(gender, birthYear) {
     const { first, last } = randomName(gender);
-    const memberId = `demo_m_${idCounter++}`;
+    const memberId = crypto.randomUUID();
     members.push({
       id: memberId,
       family_id: familyId,
@@ -97,15 +83,18 @@ async function seedTree() {
 
   console.log(`Generated ${members.length} members and ${relationships.length} relationships.`);
   
-  // Insert in batches
-  for (let i = 0; i < members.length; i += 20) {
-    await supabase.from('members').insert(members.slice(i, i + 20));
-  }
-  for (let i = 0; i < relationships.length; i += 20) {
-    await supabase.from('relationships').insert(relationships.slice(i, i + 20));
-  }
+  let sql = `-- Clear existing data\nDELETE FROM public.relationships WHERE family_id = '${familyId}';\nDELETE FROM public.members WHERE family_id = '${familyId}';\n\n`;
 
-  console.log("Demo tree seeded successfully!");
+  sql += `-- Insert Members\nINSERT INTO public.members (id, family_id, first_name, last_name, birth_date, image_url, bio, milestones) VALUES \n`;
+  const memberValues = members.map(m => `('${m.id}', '${m.family_id}', '${m.first_name}', '${m.last_name}', '${m.birth_date}', '${m.image_url}', '${m.bio.replace(/'/g, "''")}', '${JSON.stringify(m.milestones)}'::jsonb)`);
+  sql += memberValues.join(',\n') + ';\n\n';
+
+  sql += `-- Insert Relationships\nINSERT INTO public.relationships (family_id, source_id, target_id, type) VALUES \n`;
+  const relValues = relationships.map(r => `('${r.family_id}', '${r.source_id}', '${r.target_id}', '${r.type}')`);
+  sql += relValues.join(',\n') + ';\n';
+
+  fs.writeFileSync(path.join(process.cwd(), 'demo_seed.sql'), sql);
+  console.log("SQL file generated at demo_seed.sql");
 }
 
 seedTree();
