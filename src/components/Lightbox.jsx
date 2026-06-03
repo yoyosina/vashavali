@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { X, ChevronLeft, ChevronRight, Wand2, Download, RefreshCw, AlertTriangle } from 'lucide-react';
 import { colorizeImage } from '../utils/ai';
 import './Lightbox.css';
@@ -7,6 +7,20 @@ const Lightbox = ({ images, currentIndex, onClose, onNavigate }) => {
   const [isColorizing, setIsColorizing] = useState(false);
   const [colorizedUrl, setColorizedUrl] = useState(null);
   const [error, setError] = useState(null);
+  const isMounted = useRef(true);
+
+  useEffect(() => {
+    return () => { isMounted.current = false; };
+  }, []);
+
+  // Cleanup the blob URL when colorizedUrl changes or component unmounts
+  useEffect(() => {
+    return () => {
+      if (colorizedUrl) {
+        URL.revokeObjectURL(colorizedUrl);
+      }
+    };
+  }, [colorizedUrl]);
 
   // Reset state when navigating to a new image
   useEffect(() => {
@@ -33,11 +47,15 @@ const Lightbox = ({ images, currentIndex, onClose, onNavigate }) => {
     
     try {
       const resultUrl = await colorizeImage(images[currentIndex]);
-      setColorizedUrl(resultUrl);
+      if (isMounted.current) {
+        setColorizedUrl(resultUrl);
+      } else {
+        URL.revokeObjectURL(resultUrl);
+      }
     } catch (err) {
-      setError(err.message);
+      if (isMounted.current) setError(err.message);
     } finally {
-      setIsColorizing(false);
+      if (isMounted.current) setIsColorizing(false);
     }
   };
 
@@ -82,7 +100,7 @@ const Lightbox = ({ images, currentIndex, onClose, onNavigate }) => {
         </button>
       </div>
 
-      {images.length > 1 && !isColorizing && !colorizedUrl && (
+      {images.length > 1 && !isColorizing && (
         <button 
           className="lightbox-nav prev" 
           onClick={(e) => { e.stopPropagation(); onNavigate(-1); }}
@@ -119,7 +137,7 @@ const Lightbox = ({ images, currentIndex, onClose, onNavigate }) => {
         )}
       </div>
 
-      {images.length > 1 && !isColorizing && !colorizedUrl && (
+      {images.length > 1 && !isColorizing && (
         <button 
           className="lightbox-nav next" 
           onClick={(e) => { e.stopPropagation(); onNavigate(1); }}
