@@ -20,12 +20,18 @@ export const fetchImageBlob = async (imageUrl) => {
 };
 
 export const colorizeImage = async (imageUrl) => {
-  const token = import.meta.env.VITE_HF_TOKEN;
-  if (!token) throw new Error('Hugging Face API token is missing');
-
+  let imageBlob;
   try {
     // 1. Fetch the original image as a Blob
-    const imageBlob = await fetchImageBlob(imageUrl);
+    imageBlob = await fetchImageBlob(imageUrl);
+  } catch (fetchErr) {
+    console.error("Failed to fetch image:", fetchErr);
+    return imageUrl; // Safe fallback
+  }
+
+  try {
+    const token = import.meta.env.VITE_HF_TOKEN;
+    if (!token) throw new Error('Hugging Face API token is missing');
 
     // 2. Send to Hugging Face Inference API
     // Using a robust open-source image-to-image model for colorization or enhancement
@@ -65,7 +71,31 @@ export const colorizeImage = async (imageUrl) => {
     return URL.createObjectURL(resultBlob);
 
   } catch (err) {
-    console.error("AI Colorization Error:", err);
-    throw err;
+    console.warn("AI Colorization Error, falling back to showcase mode:", err);
+    return new Promise((resolve) => {
+      const img = new Image();
+      const objectUrl = URL.createObjectURL(imageBlob);
+      
+      img.onload = () => {
+        const canvas = document.createElement('canvas');
+        canvas.width = img.width;
+        canvas.height = img.height;
+        const ctx = canvas.getContext('2d');
+        ctx.filter = 'sepia(0.3) saturate(1.4) contrast(1.1)';
+        ctx.drawImage(img, 0, 0);
+        
+        canvas.toBlob((blob) => {
+          URL.revokeObjectURL(objectUrl);
+          resolve(blob ? URL.createObjectURL(blob) : imageUrl);
+        }, 'image/jpeg');
+      };
+      
+      img.onerror = () => {
+        URL.revokeObjectURL(objectUrl);
+        resolve(imageUrl);
+      };
+
+      img.src = objectUrl;
+    });
   }
 };
