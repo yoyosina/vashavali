@@ -81,8 +81,14 @@ export const colorizeImage = async (imageUrl) => {
         canvas.width = img.width;
         canvas.height = img.height;
         const ctx = canvas.getContext('2d');
-        ctx.filter = 'sepia(0.3) saturate(1.4) contrast(1.1)';
         ctx.drawImage(img, 0, 0);
+        ctx.globalCompositeOperation = 'color';
+        const gradient = ctx.createLinearGradient(0, 0, 0, img.height);
+        gradient.addColorStop(0, 'rgba(124, 185, 232, 0.5)'); // Soft sky blue
+        gradient.addColorStop(0.4, 'rgba(241, 194, 125, 0.6)'); // Warm peach/skin
+        gradient.addColorStop(1, 'rgba(90, 107, 93, 0.5)'); // Earthy green/brown
+        ctx.fillStyle = gradient;
+        ctx.fillRect(0, 0, img.width, img.height);
         
         canvas.toBlob((blob) => {
           URL.revokeObjectURL(objectUrl);
