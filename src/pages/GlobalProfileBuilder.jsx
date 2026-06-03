@@ -96,7 +96,11 @@ const GlobalProfileBuilder = () => {
     <div style={{maxWidth: '800px', margin: '2rem auto', padding: '0 1rem'}}>
       <div className="glass-panel" style={{padding: '2rem'}}>
         <h2 className="text-gradient" style={{marginTop: 0}}>Your Global Profile</h2>
-        <p className="text-muted">Fill this out once. When you join a family tree, this profile is automatically imported.</p>
+        <p className="text-muted">
+          {formData.firstName 
+            ? "Manage your global profile settings. Updates here will be imported when you join new family trees."
+            : "Fill this out once. When you join a family tree, this profile is automatically imported."}
+        </p>
         
         <form onSubmit={handleSave} className="add-member-form">
           <div style={{display: 'flex', gap: '1rem', flexDirection: 'column'}}>

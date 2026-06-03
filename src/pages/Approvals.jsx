@@ -120,6 +120,9 @@ const Approvals = () => {
         image_url: request_data.changes.imageUrl
       };
       
+      if (request_data.changes.birthDate !== undefined) updatePayload.birth_date = request_data.changes.birthDate || null;
+      if (request_data.changes.deathDate !== undefined) updatePayload.death_date = request_data.changes.deathDate || null;
+      
       if (request_data.changes.newMediaItems?.length > 0) {
         const { data: currentMem } = await supabase.from('members').select('gallery').eq('id', request_data.targetMemberId).single();
         const currentGallery = currentMem?.gallery || [];

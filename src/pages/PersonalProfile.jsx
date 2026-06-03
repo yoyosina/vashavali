@@ -150,6 +150,8 @@ const PersonalProfile = () => {
           lastName: memberRes.data.last_name,
           birthYear: memberRes.data.birth_date ? memberRes.data.birth_date.split('-')[0] : 'Unknown',
           deathYear: memberRes.data.death_date ? memberRes.data.death_date.split('-')[0] : null,
+          birthDate: memberRes.data.birth_date,
+          deathDate: memberRes.data.death_date,
           imageUrl: memberRes.data.image_url || `https://ui-avatars.com/api/?name=${memberRes.data.first_name}+${memberRes.data.last_name}&background=random`,
           bio: memberRes.data.bio || 'No biography provided yet.',
           milestones: memberRes.data.milestones || [],

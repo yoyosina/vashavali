@@ -115,8 +115,19 @@ function App() {
                 <Shield size={20} />
                 <span>Manage Tree</span>
               </Link>
-              <Link to="/global-profile" className="nav-link">
-                <Settings size={20} />
+              <Link 
+                to={(familyCode && currentUserMember) ? `/${familyCode}/profile/${currentUserMember.id}` : "/global-profile"} 
+                className={`nav-link ${location.pathname.includes('/profile') || location.pathname === '/global-profile' ? 'active' : ''}`}
+              >
+                {globalProfile?.image_url || currentUserMember?.image_url ? (
+                  <img 
+                    src={currentUserMember?.image_url || globalProfile?.image_url} 
+                    alt="Profile" 
+                    style={{ width: '20px', height: '20px', borderRadius: '50%', objectFit: 'cover' }} 
+                  />
+                ) : (
+                  <Settings size={20} />
+                )}
                 <span>Profile</span>
               </Link>
               <button className="nav-link" onClick={handleLogout}>

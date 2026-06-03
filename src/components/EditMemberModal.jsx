@@ -9,6 +9,8 @@ const EditMemberModal = ({ isOpen, onClose, member }) => {
   const [formData, setFormData] = useState({
     firstName: member?.firstName || '',
     lastName: member?.lastName || '',
+    birthDate: member?.birthDate || '',
+    deathDate: member?.deathDate || '',
     bio: member?.bio || ''
   });
   
@@ -29,6 +31,8 @@ const EditMemberModal = ({ isOpen, onClose, member }) => {
       setFormData({
         firstName: member.firstName || '',
         lastName: member.lastName || '',
+        birthDate: member.birthDate || '',
+        deathDate: member.deathDate || '',
         bio: member.bio || ''
       });
       setRemovedRels([]);
@@ -115,6 +119,8 @@ const EditMemberModal = ({ isOpen, onClose, member }) => {
       originalData: {
         firstName: member.firstName,
         lastName: member.lastName,
+        birthDate: member.birthDate,
+        deathDate: member.deathDate,
         bio: member.bio,
         imageUrl: member.imageUrl
       },
@@ -157,6 +163,17 @@ const EditMemberModal = ({ isOpen, onClose, member }) => {
             <div className="form-group">
               <label>Last Name</label>
               <input type="text" name="lastName" value={formData.lastName} required onChange={handleChange} />
+            </div>
+          </div>
+          
+          <div className="form-row">
+            <div className="form-group">
+              <label>Birth Date (optional)</label>
+              <input type="date" name="birthDate" value={formData.birthDate || ''} onChange={handleChange} />
+            </div>
+            <div className="form-group">
+              <label>Death Date (optional)</label>
+              <input type="date" name="deathDate" value={formData.deathDate || ''} onChange={handleChange} />
             </div>
           </div>
           
