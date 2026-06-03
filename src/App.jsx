@@ -48,6 +48,8 @@ function App() {
     navigate('/auth');
   };
 
+  const [defaultTreeProfile, setDefaultTreeProfile] = useState(null);
+
   useEffect(() => {
     if (user && familyCode) {
       const loadUserStatus = async () => {
@@ -60,6 +62,16 @@ function App() {
         setGlobalProfile(profile || null);
       }
       loadUserStatus();
+    } else if (user && !familyCode) {
+      const loadDefaultProfile = async () => {
+        const { data: members } = await supabase.from('members').select('id, families!inner(code)').eq('auth_id', user.id).limit(1);
+        if (members && members.length > 0) {
+          setDefaultTreeProfile(`/${members[0].families.code}/profile/${members[0].id}`);
+        }
+        const { data: profile } = await supabase.from('global_profiles').select('*').eq('auth_id', user.id).single();
+        setGlobalProfile(profile || null);
+      }
+      loadDefaultProfile();
     }
   }, [user, familyCode, location.pathname]);
 
@@ -120,7 +132,7 @@ function App() {
                 <span>Manage Tree</span>
               </Link>
               <Link 
-                to={(familyCode && currentUserMember) ? `/${familyCode}/profile/${currentUserMember.id}` : "/global-profile"} 
+                to={(familyCode && currentUserMember) ? `/${familyCode}/profile/${currentUserMember.id}` : defaultTreeProfile || "/global-profile"} 
                 className={`nav-link ${location.pathname.includes('/profile') || location.pathname === '/global-profile' ? 'active' : ''}`}
               >
                 {globalProfile?.image_url || currentUserMember?.image_url ? (

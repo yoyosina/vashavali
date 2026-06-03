@@ -326,7 +326,7 @@ const PersonalProfile = () => {
   return (
     <div className="profile-container">
       <div className="profile-actions-bar" style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '1rem' }}>
-        <button className="back-button glass-panel" onClick={() => navigate('/')}>
+        <button className="back-button glass-panel" onClick={() => navigate(`/${familyCode}`)}>
           <ArrowLeft size={20} /> Back to Tree
         </button>
 
