@@ -4,7 +4,7 @@ export const colorizeImage = async (imageUrl) => {
 
   try {
     // 1. Fetch the original image as a Blob
-    const corsProxyUrl = `https://corsproxy.io/?${encodeURIComponent(imageUrl)}`;
+    const corsProxyUrl = `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(imageUrl)}`;
     const imageResponse = await fetch(corsProxyUrl);
     if (!imageResponse.ok) throw new Error('Failed to fetch original image');
     const imageBlob = await imageResponse.blob();
