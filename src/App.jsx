@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Routes, Route, Link, useLocation, useNavigate, useParams } from 'react-router-dom';
-import { Home, Users, CheckSquare, LogIn, LogOut, Settings, Shield, Menu, X } from 'lucide-react';
+import { Home, Users, CheckSquare, LogIn, LogOut, Settings, Shield, Menu, X, Info } from 'lucide-react';
 import './App.css';
 
 import { useAuth } from './context/AuthContext';
@@ -15,6 +15,8 @@ import Auth from './pages/Auth';
 import Approvals from './pages/Approvals';
 import AddMemberModal from './components/AddMemberModal';
 import ManageTrees from './pages/ManageTrees';
+import About from './pages/About';
+import Footer from './components/Footer';
 
 const DemoOrFamilyGate = ({ children }) => {
   const { familyCode } = useParams();
@@ -39,7 +41,7 @@ function App() {
 
   // Helper to get familyCode from URL
   const pathParts = location.pathname.split('/').filter(Boolean);
-  const familyCode = pathParts[0] && !['auth', 'global-profile', 'manage-trees'].includes(pathParts[0]) ? pathParts[0] : null;
+  const familyCode = pathParts[0] && !['auth', 'global-profile', 'manage-trees', 'about'].includes(pathParts[0]) ? pathParts[0] : null;
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
@@ -61,8 +63,10 @@ function App() {
     }
   }, [user, familyCode, location.pathname]);
 
+  const isTreeCanvas = familyCode && location.pathname === `/${familyCode}`;
+
   return (
-    <div className="app-container">
+    <div className="app-container" style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
       <nav className="glass-panel top-nav">
         <div className="nav-brand">
           <Link to="/">
@@ -130,24 +134,35 @@ function App() {
                 )}
                 <span>Profile</span>
               </Link>
+              <Link to="/about" className={`nav-link ${location.pathname === '/about' ? 'active' : ''}`}>
+                <Info size={20} />
+                <span>About</span>
+              </Link>
               <button className="nav-link" onClick={handleLogout}>
                 <LogOut size={20} />
                 <span>Logout</span>
               </button>
             </>
           ) : (
-            <Link to="/auth" className={`nav-link ${location.pathname === '/auth' ? 'active' : ''}`}>
-              <LogIn size={20} />
-              <span>Login</span>
-            </Link>
+            <>
+              <Link to="/about" className={`nav-link ${location.pathname === '/about' ? 'active' : ''}`}>
+                <Info size={20} />
+                <span>About</span>
+              </Link>
+              <Link to="/auth" className={`nav-link ${location.pathname === '/auth' ? 'active' : ''}`}>
+                <LogIn size={20} />
+                <span>Login</span>
+              </Link>
+            </>
           )}
         </div>
       </nav>
 
-      <main className="main-content">
+      <main className="main-content" style={{ flex: 1 }}>
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/auth" element={<Auth />} />
+          <Route path="/about" element={<About />} />
           <Route path="/global-profile" element={<GlobalProfileBuilder />} />
           <Route path="/manage-trees" element={<ManageTrees />} />
           
@@ -170,6 +185,8 @@ function App() {
         isJoining={!currentUserMember}
         globalProfile={globalProfile}
       />}
+
+      {!isTreeCanvas && <Footer />}
     </div>
   );
 }
