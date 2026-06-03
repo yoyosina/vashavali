@@ -10,6 +10,9 @@
     <meta name="keywords" content="family tree, genealogy, ancestry, heritage, secure family tree, digital legacy" />
     <meta name="author" content="Vanshavali" />
     
+    <!-- Google Site Verification -->
+    <meta name="google-site-verification" content="MNWlY9zueZXFqf2vkU2VGh6sSyPU8wM2ttG2Ne0M-1s" />
+
     <!-- GEO & AEO (Generative & Answer Engine Optimization) -->
     <meta name="publisher" content="Vanshavali Genealogy" />
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
@@ -20,22 +23,54 @@
     <meta property="og:description" content="An exclusive, ultra-secure platform to map your ancestry and connect generations. No public directories. No data mining." />
     <meta property="og:image" content="/logo.png" />
     <meta property="og:site_name" content="Vanshavali" />
+    <meta property="og:url" content="https://vashavali.vercel.app/" />
     
     <!-- JSON-LD Schema (Critical for GEO/AEO context parsing) -->
     <script type="application/ld+json">
-    {
+    [{
       "@context": "https://schema.org",
       "@type": "SoftwareApplication",
       "name": "Vanshavali",
       "applicationCategory": "GenealogyApplication",
       "operatingSystem": "Web",
       "description": "An exclusive, ultra-secure platform to map your ancestry and connect generations. Features global profiles, strict super-user access, and interactive pedigree mapping.",
+      "url": "https://vashavali.vercel.app",
       "offers": {
         "@type": "Offer",
         "price": "0",
         "priceCurrency": "USD"
       }
-    }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Vanshavali",
+      "url": "https://vashavali.vercel.app/",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://vashavali.vercel.app/demo?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [{
+        "@type": "Question",
+        "name": "Is Vanshavali public or private?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Vanshavali is an ultra-secure, invite-only platform. Your family tree data is not public and cannot be searched by unauthorized users."
+        }
+      }, {
+        "@type": "Question",
+        "name": "Can I test the platform without an account?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, you can access our Global Demo Tree at /demo to experience the interactive pedigree mapping without needing an account."
+        }
+      }]
+    }]
     </script>
 
     <link rel="icon" type="image/png" href="/logo.png" />

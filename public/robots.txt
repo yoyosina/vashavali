@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Allow: /demo
+Disallow: /auth
+Disallow: /api/
+
+Sitemap: https://vashavali.vercel.app/sitemap.xml
