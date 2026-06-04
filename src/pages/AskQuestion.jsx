@@ -4,13 +4,16 @@ import { useAuth } from '../context/AuthContext';
 import { MessageSquare, AlertCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
+import { supabase } from '../lib/supabaseClient';
+
 const AskQuestion = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
   const [question, setQuestion] = useState('');
   const [showDialog, setShowDialog] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!question.trim()) return;
     
@@ -19,9 +22,23 @@ const AskQuestion = () => {
       return;
     }
 
-    // Since the user is logged in, just clear for now or show success
-    setQuestion('');
-    alert('Thank you! Your question has been submitted securely.');
+    setIsSubmitting(true);
+    
+    try {
+      const { error } = await supabase
+        .from('user_questions')
+        .insert([{ auth_id: user.id, question: question.trim() }]);
+
+      if (error) throw error;
+
+      setQuestion('');
+      alert('Thank you! Your question has been recorded securely.');
+    } catch (err) {
+      console.error('Error submitting question:', err);
+      alert('There was an error submitting your question. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -58,8 +75,8 @@ const AskQuestion = () => {
             />
           </div>
           
-          <button type="submit" className="btn-primary" style={{ width: '100%', padding: '1rem', fontSize: '1.1rem' }}>
-            Submit Question
+          <button type="submit" className="btn-primary" disabled={isSubmitting} style={{ width: '100%', padding: '1rem', fontSize: '1.1rem', opacity: isSubmitting ? 0.7 : 1 }}>
+            {isSubmitting ? 'Submitting...' : 'Submit Question'}
           </button>
         </form>
       </div>
