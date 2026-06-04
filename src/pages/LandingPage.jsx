@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { Users, Shield, Globe, ArrowRight } from 'lucide-react';
+import { Users, Shield, Globe, ArrowRight, Key, Fingerprint, Lock, Database, EyeOff } from 'lucide-react';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import './LandingPage.css';
 
@@ -218,39 +218,59 @@ const LandingPage = () => {
           <p>Propose edits, upload memories, and grow your family's tree together organically.</p>
         </div>
       </motion.div>
-      <motion.section
-        className="security-privacy-section"
+      <motion.section 
+        className="how-it-works-section"
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.6 }}
         style={{ marginTop: '4rem' }}
       >
-        <div className="security-content glass-panel-premium" style={{ margin: '0 auto', maxWidth: '800px', textAlign: 'left' }}>
-          <h2>Uncompromising Security & Privacy</h2>
-          <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-            At Vashavali, we believe your family's history is the most sensitive data imaginable. 
-            That is why our architecture is built from the ground up with a privacy-first mindset. 
-            Unlike public social networks or commercial genealogy platforms, we operate on a strict 
-            "zero data mining" policy. Your legacy is yours, and we explicitly do not analyze, sell, 
-            or monetize your data in any way.
-          </p>
-          <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-            Our infrastructure employs state-of-the-art end-to-end encryption for all sensitive 
-            communications and records. Every family tree exists within an isolated database environment, 
-            ensuring that cross-contamination or unauthorized public access is technically impossible.
-          </p>
-          <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-            Access is heavily regulated by designated super-users within your family. Every member must 
-            be explicitly invited, and every contribution—whether it is an uploaded photograph, a date 
-            of birth, or a newly discovered relative—is tracked and authenticated. Your digital legacy 
-            is preserved in a secure vault, designed to last for generations without exposure to the open internet.
-          </p>
-          <p style={{ lineHeight: '1.6' }}>
-            We continuously audit our systems and update our security protocols to stay ahead of modern 
-            cybersecurity threats, giving you the peace of mind to focus on what truly matters: 
-            celebrating your heritage in a completely private environment.
-          </p>
+        <h2 className="section-title">How It Works</h2>
+        <div className="how-it-works-grid">
+          <div className="step-card glass-panel-premium interact-card">
+            <Key size={40} className="feature-icon" />
+            <h4>1. Receive an Invite</h4>
+            <p>Obtain a unique Family Code from your family's designated super-user.</p>
+          </div>
+          <div className="step-card glass-panel-premium interact-card">
+            <Fingerprint size={40} className="feature-icon" />
+            <h4>2. Authenticate Securely</h4>
+            <p>Enter the code and authenticate to verify your identity.</p>
+          </div>
+          <div className="step-card glass-panel-premium interact-card">
+            <Users size={40} className="feature-icon" />
+            <h4>3. Preserve Your Legacy</h4>
+            <p>Seamlessly port your profile and grow your family's tree together.</p>
+          </div>
+        </div>
+      </motion.section>
+
+      <motion.section 
+        className="privacy-matters-section"
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.6, delay: 0.2 }}
+        style={{ marginTop: '4rem' }}
+      >
+        <h2 className="section-title">Privacy Matters</h2>
+        <div className="privacy-grid">
+          <div className="privacy-card glass-panel-premium interact-card gold-border">
+            <EyeOff size={40} className="feature-icon" />
+            <h4>Zero Data Mining</h4>
+            <p>Your legacy is yours. We strictly do not analyze, sell, or monetize your data.</p>
+          </div>
+          <div className="privacy-card glass-panel-premium interact-card gold-border">
+            <Database size={40} className="feature-icon" />
+            <h4>Isolated Environments</h4>
+            <p>Every tree exists in an isolated database to prevent unauthorized access.</p>
+          </div>
+          <div className="privacy-card glass-panel-premium interact-card gold-border">
+            <Lock size={40} className="feature-icon" />
+            <h4>End-to-End Encryption</h4>
+            <p>State-of-the-art encryption secures all sensitive communications and records.</p>
+          </div>
         </div>
       </motion.section>
 
