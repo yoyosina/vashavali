@@ -299,9 +299,14 @@ const LandingPage = () => {
             <p className="text-muted" style={{ fontStyle: 'italic', marginBottom: '1.5rem', lineHeight: '1.6' }}>
               "Vashavali finally gave us a place to securely map our ancestry without worrying about data brokers. The global portability feature is pure genius!"
             </p>
-            <div>
-              <h4 style={{ margin: '0 0 0.2rem 0' }}>Sarah Jenkins</h4>
-              <span className="text-muted" style={{ fontSize: '0.85rem' }}>Joined 2024</span>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+              <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <Users size={20} color="var(--color-accent-gold)" />
+              </div>
+              <div>
+                <h4 style={{ margin: '0 0 0.2rem 0' }}>Sarah Jenkins</h4>
+                <span className="text-muted" style={{ fontSize: '0.85rem' }}>Joined 2024</span>
+              </div>
             </div>
           </div>
 
@@ -312,9 +317,14 @@ const LandingPage = () => {
             <p className="text-muted" style={{ fontStyle: 'italic', marginBottom: '1.5rem', lineHeight: '1.6' }}>
               "The approval workflows ensure our tree remains accurate. I love how beautiful and interactive the node canvas is compared to legacy platforms."
             </p>
-            <div>
-              <h4 style={{ margin: '0 0 0.2rem 0' }}>Michael Chen</h4>
-              <span className="text-muted" style={{ fontSize: '0.85rem' }}>Joined 2025</span>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+              <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <Users size={20} color="var(--color-accent-gold)" />
+              </div>
+              <div>
+                <h4 style={{ margin: '0 0 0.2rem 0' }}>Michael Chen</h4>
+                <span className="text-muted" style={{ fontSize: '0.85rem' }}>Joined 2025</span>
+              </div>
             </div>
           </div>
 
@@ -325,9 +335,14 @@ const LandingPage = () => {
             <p className="text-muted" style={{ fontStyle: 'italic', marginBottom: '1.5rem', lineHeight: '1.6' }}>
               "Setting up my Global Identity once and using it across both my parents' and in-laws' trees saved me so much time. Absolutely stunning UI."
             </p>
-            <div>
-              <h4 style={{ margin: '0 0 0.2rem 0' }}>Priya Sharma</h4>
-              <span className="text-muted" style={{ fontSize: '0.85rem' }}>Joined 2025</span>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+              <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <Users size={20} color="var(--color-accent-gold)" />
+              </div>
+              <div>
+                <h4 style={{ margin: '0 0 0.2rem 0' }}>Priya Sharma</h4>
+                <span className="text-muted" style={{ fontSize: '0.85rem' }}>Joined 2025</span>
+              </div>
             </div>
           </div>
 
@@ -392,6 +407,12 @@ const LandingPage = () => {
                 No. Vashavali is strictly invite-only. Only members invited by a family super-user can view or edit the tree.
               </motion.p>
             )}
+          </div>
+          
+          <div style={{ textAlign: 'center', marginTop: '2rem' }}>
+            <Link to="/ask-question" className="btn-secondary" style={{ padding: '0.8rem 2rem' }}>
+              Have another question? Ask us
+            </Link>
           </div>
 
         </div>

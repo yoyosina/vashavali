@@ -17,6 +17,7 @@ import AddMemberModal from './components/AddMemberModal';
 import ManageTrees from './pages/ManageTrees';
 import About from './pages/About';
 import Security from './pages/Security';
+import AskQuestion from './pages/AskQuestion';
 import Footer from './components/Footer';
 
 const DemoOrFamilyGate = ({ children }) => {
@@ -179,6 +180,7 @@ function App() {
           <Route path="/security" element={<Security />} />
           <Route path="/global-profile" element={<GlobalProfileBuilder />} />
           <Route path="/manage-trees" element={<ManageTrees />} />
+          <Route path="/ask-question" element={<AskQuestion />} />
           
           <Route path="/:familyCode/*" element={
             <DemoOrFamilyGate>
