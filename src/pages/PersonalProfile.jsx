@@ -12,6 +12,7 @@ import './PersonalProfile.css';
 import dagre from 'dagre';
 import { supabase } from '../lib/supabaseClient';
 import { useAuth } from '../context/AuthContext';
+import { useTheme } from '../context/ThemeContext';
 
 const getMiniTreeLayout = (centerNodeId, nodes, edges) => {
   const dagreGraph = new dagre.graphlib.Graph();
@@ -52,6 +53,7 @@ const getMiniTreeLayout = (centerNodeId, nodes, edges) => {
 
 const PersonalProfile = () => {
   const { id, familyCode } = useParams();
+  const { theme } = useTheme();
   const navigate = useNavigate();
   const { user } = useAuth();
   
@@ -116,6 +118,7 @@ const PersonalProfile = () => {
     };
 
     const { error } = await supabase.from('join_requests').insert([{
+      family_id: member.familyId,
       submitted_by: user.id,
       request_data: requestData
     }]);
@@ -146,6 +149,7 @@ const PersonalProfile = () => {
       if (memberRes.data) {
         setMember({
           id: memberRes.data.id,
+          familyId: memberRes.data.family_id,
           firstName: memberRes.data.first_name,
           lastName: memberRes.data.last_name,
           birthYear: memberRes.data.birth_date ? memberRes.data.birth_date.split('-')[0] : 'Unknown',
@@ -304,6 +308,7 @@ const PersonalProfile = () => {
     };
 
     const { error } = await supabase.from('join_requests').insert([{
+      family_id: member.familyId,
       submitted_by: user.id,
       request_data: requestData
     }]);
@@ -444,7 +449,7 @@ const PersonalProfile = () => {
                 onNodesChange={onNodesChange}
                 onEdgesChange={onEdgesChange}
                 fitView
-                colorMode="dark"
+                colorMode={theme === 'light' ? 'light' : 'dark'}
               >
                 <Background color="var(--color-border)" gap={20} size={1} />
                 <Controls />

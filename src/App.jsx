@@ -19,6 +19,8 @@ import About from './pages/About';
 import Security from './pages/Security';
 import AskQuestion from './pages/AskQuestion';
 import Footer from './components/Footer';
+import ThemeToggle from './components/ThemeToggle';
+import { useTheme } from './context/ThemeContext';
 
 const DemoOrFamilyGate = ({ children }) => {
   const { familyCode } = useParams();
@@ -32,6 +34,7 @@ function App() {
   const location = useLocation();
   const navigate = useNavigate();
   const { user } = useAuth();
+  const { theme } = useTheme();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentUserMember, setCurrentUserMember] = useState(null);
   const [globalProfile, setGlobalProfile] = useState(null);
@@ -84,12 +87,12 @@ function App() {
       <nav className="glass-panel top-nav">
         <div className="nav-brand">
           <Link to="/">
-            <img src="/logo.png" alt="Vanshavali Logo" style={{ height: '45px', objectFit: 'contain' }} />
+            <img src={theme === 'light' ? '/logo-light.svg' : '/logo-dark.svg'} alt="Vashavali Logo" style={{ height: '45px', objectFit: 'contain' }} />
           </Link>
         </div>
 
         <div className="mobile-menu-btn" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
-          {isMobileMenuOpen ? <X size={28} color="white" /> : <Menu size={28} color="white" />}
+          {isMobileMenuOpen ? <X size={28} color="var(--color-text-primary)" /> : <Menu size={28} color="var(--color-text-primary)" />}
         </div>
 
         <div className={`nav-links ${isMobileMenuOpen ? 'mobile-open' : ''}`}>
@@ -169,6 +172,9 @@ function App() {
               </Link>
             </>
           )}
+          <div className="desktop-theme-toggle" style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center' }}>
+            <ThemeToggle />
+          </div>
         </div>
       </nav>
 

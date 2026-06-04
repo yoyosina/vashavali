@@ -60,6 +60,7 @@ const EditMilestonesModal = ({ isOpen, onClose, member }) => {
     };
 
     const { error } = await supabase.from('join_requests').insert([{
+      family_id: member.familyId,
       submitted_by: user.id,
       request_data: requestData
     }]);

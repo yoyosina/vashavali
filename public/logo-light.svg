@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <!-- Base of tree -->
+  <path d="M60 170 C 100 155 100 155 140 170" fill="none" stroke="#2C363F" stroke-width="12" stroke-linecap="round" />
+  
+  <!-- Tree Trunk and Heart Outline -->
+  <path d="M100 160 Q 100 120 70 95 C 45 75 75 40 100 70 C 125 40 155 75 130 95 Q 100 120 100 160" fill="none" stroke="#2C363F" stroke-width="14" stroke-linecap="round" stroke-linejoin="round" />
+  
+  <!-- Solid Heart Inside -->
+  <path d="M100 75 C 115 50 145 65 125 90 C 115 105 100 120 100 120 C 100 120 85 105 75 90 C 55 65 85 50 100 75" fill="#E77E55" />
+  
+  <!-- Leaves (coral/peach and dark slate) -->
+  <!-- Left Side -->
+  <path d="M50 110 Q 30 115 45 125 Q 55 115 50 110" fill="#2C363F" />
+  <path d="M40 85 Q 20 75 35 65 Q 50 75 40 85" fill="#FF9E7A" />
+  <path d="M55 55 Q 40 35 60 40 Q 65 55 55 55" fill="#2C363F" />
+  <path d="M80 30 Q 75 10 95 20 Q 90 35 80 30" fill="#FF9E7A" />
+  
+  <!-- Right Side -->
+  <path d="M150 110 Q 170 115 155 125 Q 145 115 150 110" fill="#2C363F" />
+  <path d="M160 85 Q 180 75 165 65 Q 150 75 160 85" fill="#FF9E7A" />
+  <path d="M145 55 Q 160 35 140 40 Q 135 55 145 55" fill="#2C363F" />
+  <path d="M120 30 Q 125 10 105 20 Q 110 35 120 30" fill="#FF9E7A" />
+  
+  <!-- Top Center Leaf -->
+  <path d="M100 15 Q 90 35 110 35 Q 110 15 100 15" fill="#FF9E7A" />
+</svg>

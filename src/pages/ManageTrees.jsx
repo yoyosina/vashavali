@@ -29,10 +29,10 @@ const ManageTrees = () => {
     fetchTrees();
   }, [user, navigate]);
 
-  if (loading) return <div style={{color: 'white', padding: '2rem', textAlign: 'center'}}>Loading...</div>;
+  if (loading) return <div style={{padding: '2rem', textAlign: 'center', color: 'var(--color-text-primary)'}}>Loading...</div>;
 
   return (
-    <div style={{maxWidth: '800px', margin: '2rem auto', padding: '0 1rem', color: 'white'}}>
+    <div style={{maxWidth: '800px', margin: '2rem auto', padding: '0 1rem', color: 'var(--color-text-primary)'}}>
       <div style={{display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '2rem'}}>
         <Shield size={32} color="var(--color-accent-gold)" />
         <h2 className="text-gradient" style={{margin: 0}}>Manage Your Trees</h2>

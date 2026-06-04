@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { useTheme } from '../context/ThemeContext';
 import { Users, Shield, Globe, ArrowRight, Key, Fingerprint, Lock, Database, EyeOff, Star, ChevronDown, ChevronUp } from 'lucide-react';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import './LandingPage.css';
@@ -11,6 +12,7 @@ const LandingPage = () => {
   const [code, setCode] = useState('');
   const navigate = useNavigate();
   const { user } = useAuth();
+  const { theme } = useTheme();
   
   const [openFaq, setOpenFaq] = useState(null);
 
@@ -114,7 +116,7 @@ const LandingPage = () => {
         />
 
         <div className="hero-logo-wrapper">
-          <img src="/logo.png" alt="Vashavali Logo" className="hero-logo" />
+          <img src={theme === 'light' ? '/logo-light.svg' : '/logo-dark.svg'} alt="Vashavali Logo" className="hero-logo" />
         </div>
         
         <h1 className="awwwards-title">
@@ -300,8 +302,8 @@ const LandingPage = () => {
               "Vashavali finally gave us a place to securely map our ancestry without worrying about data brokers. The global portability feature is pure genius!"
             </p>
             <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-              <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <Users size={20} color="var(--color-accent-gold)" />
+              <div style={{ width: '40px', height: '40px', borderRadius: '50%', overflow: 'hidden', background: 'rgba(255,255,255,0.1)' }}>
+                <img src="https://i.pravatar.cc/150?u=sarahjenkins" alt="Sarah Jenkins" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
               </div>
               <div>
                 <h4 style={{ margin: '0 0 0.2rem 0' }}>Sarah Jenkins</h4>
@@ -318,8 +320,8 @@ const LandingPage = () => {
               "The approval workflows ensure our tree remains accurate. I love how beautiful and interactive the node canvas is compared to legacy platforms."
             </p>
             <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-              <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <Users size={20} color="var(--color-accent-gold)" />
+              <div style={{ width: '40px', height: '40px', borderRadius: '50%', overflow: 'hidden', background: 'rgba(255,255,255,0.1)' }}>
+                <img src="https://i.pravatar.cc/150?u=michaelchen" alt="Michael Chen" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
               </div>
               <div>
                 <h4 style={{ margin: '0 0 0.2rem 0' }}>Michael Chen</h4>
@@ -336,8 +338,8 @@ const LandingPage = () => {
               "Setting up my Global Identity once and using it across both my parents' and in-laws' trees saved me so much time. Absolutely stunning UI."
             </p>
             <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-              <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <Users size={20} color="var(--color-accent-gold)" />
+              <div style={{ width: '40px', height: '40px', borderRadius: '50%', overflow: 'hidden', background: 'rgba(255,255,255,0.1)' }}>
+                <img src="https://i.pravatar.cc/150?u=priyasharma" alt="Priya Sharma" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
               </div>
               <div>
                 <h4 style={{ margin: '0 0 0.2rem 0' }}>Priya Sharma</h4>

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
+  <path d="M0 500 Q 200 400 500 0" fill="none" stroke="#2C363F" stroke-width="3" opacity="0.4" />
+  <!-- Leaves branching off -->
+  <path d="M50 470 Q 100 400 150 440 Q 100 490 50 470" fill="#7E8994" opacity="0.3" />
+  <path d="M150 400 Q 180 320 250 350 Q 200 420 150 400" fill="#7E8994" opacity="0.3" />
+  <path d="M250 325 Q 300 250 350 290 Q 280 350 250 325" fill="#7E8994" opacity="0.3" />
+  <path d="M350 250 Q 400 150 460 200 Q 400 270 350 250" fill="#7E8994" opacity="0.3" />
+  <path d="M100 430 Q 150 380 200 350 Q 120 370 100 430" fill="#7E8994" opacity="0.2" />
+  <path d="M200 360 Q 280 300 300 250 Q 250 280 200 360" fill="#7E8994" opacity="0.2" />
+</svg>

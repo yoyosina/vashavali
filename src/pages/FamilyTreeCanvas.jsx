@@ -13,6 +13,7 @@ import dagre from 'dagre';
 import MemberNode from '../components/MemberNode';
 import UnionNode from '../components/UnionNode';
 import { supabase } from '../lib/supabaseClient';
+import { useTheme } from '../context/ThemeContext';
 
 const nodeWidth = 200;
 const nodeHeight = 220;
@@ -118,6 +119,7 @@ import { useParams } from 'react-router-dom';
 
 const FamilyTreeCanvas = () => {
   const { familyCode } = useParams();
+  const { theme } = useTheme();
   const [nodes, setNodes, onNodesChange] = useNodesState([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
   const [loading, setLoading] = useState(true);
@@ -254,7 +256,7 @@ const FamilyTreeCanvas = () => {
           onConnect={onConnect}
           fitView
           minZoom={0.1}
-          colorMode="dark"
+          colorMode={theme === 'light' ? 'light' : 'dark'}
         >
           <Background color="var(--color-border)" gap={30} size={1} />
           <Controls />
