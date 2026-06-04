@@ -9,11 +9,11 @@ export default defineConfig({
     chunkSizeWarningLimit: 1000,
     rollupOptions: {
       output: {
-        manualChunks: {
-          'vendor-react': ['react', 'react-dom'],
-          'vendor-react-router': ['react-router-dom'],
-          'vendor-lucide': ['lucide-react'],
-          'vendor-supabase': ['@supabase/supabase-js']
+        manualChunks(id) {
+          if (id.includes('node_modules/react/') || id.includes('node_modules/react-dom/')) return 'vendor-react';
+          if (id.includes('node_modules/react-router-dom/')) return 'vendor-react-router';
+          if (id.includes('node_modules/lucide-react/')) return 'vendor-lucide';
+          if (id.includes('node_modules/@supabase/supabase-js/')) return 'vendor-supabase';
         }
       }
     }
