@@ -11,9 +11,9 @@ const Footer = () => {
     <footer className="glass-footer">
       <div className="footer-content">
         <div className="footer-brand">
-          <img src="/logo.png" alt="Vanshavali" style={{ height: '30px', opacity: 0.8 }} />
+          <img src="/logo.png" alt="Vashavali" style={{ height: '30px', opacity: 0.8 }} />
           <p className="copyright text-muted">
-            &copy; {new Date().getFullYear()} Vanshavali. Crafted by Narendra Sinha.
+            &copy; {new Date().getFullYear()} Vashavali. Crafted by Narendra Sinha.
           </p>
         </div>
         

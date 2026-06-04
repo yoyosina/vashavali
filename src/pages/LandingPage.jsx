@@ -64,10 +64,10 @@ const LandingPage = () => {
                   "mainEntity": [
                     {
                       "@type": "Question",
-                      "name": "How does Vashavail protect my privacy?",
+                      "name": "How does Vashavali protect my privacy?",
                       "acceptedAnswer": {
                         "@type": "Answer",
-                        "text": "Vashavail uses end-to-end encryption and isolated databases. We have a strict zero data-mining policy, ensuring your family tree is never shared or monetized."
+                        "text": "Vashavali uses end-to-end encryption and isolated databases. We have a strict zero data-mining policy, ensuring your family tree is never shared or monetized."
                       }
                     },
                     {
@@ -75,15 +75,15 @@ const LandingPage = () => {
                       "name": "Is my family tree visible to the public?",
                       "acceptedAnswer": {
                         "@type": "Answer",
-                        "text": "No. Vashavail is strictly invite-only. Only members invited by a family super-user can view or edit the tree."
+                        "text": "No. Vashavali is strictly invite-only. Only members invited by a family super-user can view or edit the tree."
                       }
                     }
                   ]
                 },
                 {
                   "@type": "HowTo",
-                  "name": "How to join Vashavail",
-                  "description": "Step-by-step guide on how to join a secure family tree on the Vashavail platform.",
+                  "name": "How to join Vashavali",
+                  "description": "Step-by-step guide on how to join a secure family tree on the Vashavali platform.",
                   "step": [
                     {
                       "@type": "HowToStep",
@@ -93,7 +93,7 @@ const LandingPage = () => {
                     {
                       "@type": "HowToStep",
                       "name": "Enter the Code",
-                      "text": "Navigate to the Vashavail landing page and enter your unique code into the 'Access a Family Tree' input field."
+                      "text": "Navigate to the Vashavali landing page and enter your unique code into the 'Access a Family Tree' input field."
                     },
                     {
                       "@type": "HowToStep",
@@ -108,7 +108,7 @@ const LandingPage = () => {
         />
 
         <div className="hero-logo-wrapper">
-          <img src="/logo.png" alt="Vashavail Logo" className="hero-logo" />
+          <img src="/logo.png" alt="Vashavali Logo" className="hero-logo" />
         </div>
         
         <h1 className="awwwards-title">
@@ -137,7 +137,7 @@ const LandingPage = () => {
           <h3 className="overline">Our Mission</h3>
           <h2>Connecting the Past, Present, and Future</h2>
           <p>
-            Your family's history is deeply personal. Vashavail provides a completely isolated, 
+            Your family's history is deeply personal. Vashavali provides a completely isolated, 
             invite-only sanctuary to weave your family narrative. No public directories. No data mining. 
             Just your heritage, beautifully preserved.
           </p>
@@ -229,7 +229,7 @@ const LandingPage = () => {
         <div className="security-content glass-panel-premium" style={{ margin: '0 auto', maxWidth: '800px', textAlign: 'left' }}>
           <h2>Uncompromising Security & Privacy</h2>
           <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
-            At Vashavail, we believe your family's history is the most sensitive data imaginable. 
+            At Vashavali, we believe your family's history is the most sensitive data imaginable. 
             That is why our architecture is built from the ground up with a privacy-first mindset. 
             Unlike public social networks or commercial genealogy platforms, we operate on a strict 
             "zero data mining" policy. Your legacy is yours, and we explicitly do not analyze, sell, 
@@ -257,7 +257,7 @@ const LandingPage = () => {
       <footer className="landing-footer" style={{ marginTop: '4rem', paddingBottom: '2rem' }}>
         <div className="glass-panel-premium text-center" style={{ padding: '1.5rem', maxWidth: '800px', margin: '0 auto' }}>
           <p className="text-muted" style={{ fontSize: '0.9rem', margin: 0 }}>
-            Platform Architect: Vashavail Development Team
+            Platform Architect: Vashavali Development Team
             <br/>
             Last Updated: June 2026
           </p>

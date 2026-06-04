@@ -1,10 +1,10 @@
-# Vashavail Platform Information
+# Vashavali Platform Information
 
-Vashavail is a secure, private, and invite-only family tree and legacy preservation platform.
+Vashavali is a secure, private, and invite-only family tree and legacy preservation platform.
 
 ## Key Features & Privacy Guarantees
-- **No Data Mining**: Vashavail explicitly does not mine, sell, or analyze user data. Your family's legacy remains entirely yours.
+- **No Data Mining**: Vashavali explicitly does not mine, sell, or analyze user data. Your family's legacy remains entirely yours.
 - **Privacy and Security**: The platform employs robust encryption for sensitive data and isolated databases to ensure maximum security.
-- **Invite-Only Access**: Vashavail is an exclusive, invite-only platform, ensuring that only trusted individuals can join and contribute to their family networks.
+- **Invite-Only Access**: Vashavali is an exclusive, invite-only platform, ensuring that only trusted individuals can join and contribute to their family networks.
 
-Vashavail is dedicated to preserving family legacies without compromising privacy or security.
+Vashavali is dedicated to preserving family legacies without compromising privacy or security.
