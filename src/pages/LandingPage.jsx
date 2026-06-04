@@ -210,18 +210,18 @@ const LandingPage = () => {
       >
         <div className="feature-card glass-panel-premium">
           <Shield size={40} className="feature-icon" />
-          <h4>Absolute Privacy</h4>
-          <p>Access is strictly invite-only. Super users must approve all view and edit requests.</p>
+          <h4>How does Vashavali ensure absolute privacy?</h4>
+          <p>Access is strictly invite-only. Super users must approve all view and edit requests before anyone can join your tree.</p>
         </div>
         <div className="feature-card glass-panel-premium">
           <Globe size={40} className="feature-icon" />
-          <h4>Global Portability</h4>
-          <p>Maintain one beautiful profile and port it seamlessly into any family tree you are part of.</p>
+          <h4>What is Global Portability?</h4>
+          <p>Maintain one beautiful master profile and port it seamlessly into any family tree you are part of without re-entering data.</p>
         </div>
         <div className="feature-card glass-panel-premium">
           <Users size={40} className="feature-icon" />
-          <h4>Collaborative</h4>
-          <p>Propose edits, upload memories, and grow your family's tree together organically.</p>
+          <h4>How is the platform collaborative?</h4>
+          <p>Family members can propose edits, upload shared memories, and grow your family's interconnected tree together organically.</p>
         </div>
       </motion.div>
       <motion.section 
@@ -264,18 +264,18 @@ const LandingPage = () => {
         <div className="privacy-grid">
           <div className="privacy-card glass-panel-premium interact-card gold-border">
             <EyeOff size={40} className="feature-icon" />
-            <h4>Zero Data Mining</h4>
-            <p>Your legacy is yours. We strictly do not analyze, sell, or monetize your data.</p>
+            <h4>Do you practice Zero Data Mining?</h4>
+            <p>Yes. Your legacy is yours alone. We strictly do not analyze, sell, or monetize your genealogical data.</p>
           </div>
           <div className="privacy-card glass-panel-premium interact-card gold-border">
             <Database size={40} className="feature-icon" />
-            <h4>Isolated Environments</h4>
-            <p>Every tree exists in an isolated database to prevent unauthorized access.</p>
+            <h4>Are trees in Isolated Environments?</h4>
+            <p>Yes. Every family tree exists in an isolated, secure database to prevent cross-contamination or unauthorized access.</p>
           </div>
           <div className="privacy-card glass-panel-premium interact-card gold-border">
             <Lock size={40} className="feature-icon" />
-            <h4>End-to-End Encryption</h4>
-            <p>State-of-the-art encryption secures all sensitive communications and records.</p>
+            <h4>Do you use End-to-End Encryption?</h4>
+            <p>Absolutely. State-of-the-art encryption secures all sensitive communications, personal records, and media.</p>
           </div>
         </div>
       </motion.section>
@@ -363,48 +363,48 @@ const LandingPage = () => {
           
           <div className="glass-panel-premium interact-card" onClick={() => toggleFaq(0)} style={{ padding: '1.5rem', cursor: 'pointer' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <h4 style={{ margin: 0 }}>Is Vashavali public or private?</h4>
+              <h4 style={{ margin: 0 }}>What is Vashavali?</h4>
               {openFaq === 0 ? <ChevronUp size={20} className="text-muted" /> : <ChevronDown size={20} className="text-muted" />}
             </div>
             {openFaq === 0 && (
               <motion.p initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} className="text-muted" style={{ marginTop: '1rem', marginBottom: 0, lineHeight: '1.6' }}>
-                Vashavali is an ultra-secure, invite-only platform. Your family tree data is not public and cannot be searched by unauthorized users.
+                Vashavali is an exclusive, ultra-secure digital family tree and heritage platform. It enables families to collaboratively map their ancestry, preserve generational memories, and build an interactive lineage securely. Unlike public directories, Vashavali prioritizes absolute privacy, operating entirely free from data mining or third-party data sales.
               </motion.p>
             )}
           </div>
 
           <div className="glass-panel-premium interact-card" onClick={() => toggleFaq(1)} style={{ padding: '1.5rem', cursor: 'pointer' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <h4 style={{ margin: 0 }}>Can I test the platform without an account?</h4>
+              <h4 style={{ margin: 0 }}>How does Vashavali ensure my family's privacy?</h4>
               {openFaq === 1 ? <ChevronUp size={20} className="text-muted" /> : <ChevronDown size={20} className="text-muted" />}
             </div>
             {openFaq === 1 && (
               <motion.p initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} className="text-muted" style={{ marginTop: '1rem', marginBottom: 0, lineHeight: '1.6' }}>
-                Yes, you can access our Global Demo Tree at /demo to experience the interactive pedigree mapping without needing an account.
+                Vashavali guarantees privacy by utilizing isolated database environments and state-of-the-art end-to-end encryption. Access to any family tree is strictly invite-only, meaning only authenticated members explicitly approved by a designated family super-user can view, edit, or interact with your sensitive historical records and media.
               </motion.p>
             )}
           </div>
 
           <div className="glass-panel-premium interact-card" onClick={() => toggleFaq(2)} style={{ padding: '1.5rem', cursor: 'pointer' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <h4 style={{ margin: 0 }}>How does Vashavali protect my privacy?</h4>
+              <h4 style={{ margin: 0 }}>Is Vashavali free to use?</h4>
               {openFaq === 2 ? <ChevronUp size={20} className="text-muted" /> : <ChevronDown size={20} className="text-muted" />}
             </div>
             {openFaq === 2 && (
               <motion.p initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} className="text-muted" style={{ marginTop: '1rem', marginBottom: 0, lineHeight: '1.6' }}>
-                Vashavali uses end-to-end encryption and isolated databases. We have a strict zero data-mining policy, ensuring your family tree is never shared or monetized.
+                Vashavali operates on a freemium model. Core functionality, including creating your secure Global Identity and participating in invited family trees, is completely free. We do not subsidize free accounts by selling your data; instead, premium features like advanced AI media restoration and geospatial mapping require a subscription.
               </motion.p>
             )}
           </div>
 
           <div className="glass-panel-premium interact-card" onClick={() => toggleFaq(3)} style={{ padding: '1.5rem', cursor: 'pointer' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <h4 style={{ margin: 0 }}>Is my family tree visible to the public?</h4>
+              <h4 style={{ margin: 0 }}>How do I invite family members to my tree?</h4>
               {openFaq === 3 ? <ChevronUp size={20} className="text-muted" /> : <ChevronDown size={20} className="text-muted" />}
             </div>
             {openFaq === 3 && (
               <motion.p initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} className="text-muted" style={{ marginTop: '1rem', marginBottom: 0, lineHeight: '1.6' }}>
-                No. Vashavali is strictly invite-only. Only members invited by a family super-user can view or edit the tree.
+                To invite family members, the designated super-user simply generates a secure, unique Family Code from the tree's dashboard. You can securely share this code with relatives. They then enter the code on the landing page, create their Global Identity, and await your final approval to join.
               </motion.p>
             )}
           </div>
