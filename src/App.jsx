@@ -16,6 +16,7 @@ import Approvals from './pages/Approvals';
 import AddMemberModal from './components/AddMemberModal';
 import ManageTrees from './pages/ManageTrees';
 import About from './pages/About';
+import Security from './pages/Security';
 import Footer from './components/Footer';
 
 const DemoOrFamilyGate = ({ children }) => {
@@ -175,6 +176,7 @@ function App() {
           <Route path="/" element={<LandingPage />} />
           <Route path="/auth" element={<Auth />} />
           <Route path="/about" element={<About />} />
+          <Route path="/security" element={<Security />} />
           <Route path="/global-profile" element={<GlobalProfileBuilder />} />
           <Route path="/manage-trees" element={<ManageTrees />} />
           

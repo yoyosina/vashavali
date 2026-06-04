@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { Users, Shield, Globe, ArrowRight, Key, Fingerprint, Lock, Database, EyeOff } from 'lucide-react';
+import { Users, Shield, Globe, ArrowRight, Key, Fingerprint, Lock, Database, EyeOff, Star, ChevronDown, ChevronUp } from 'lucide-react';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import './LandingPage.css';
 
@@ -11,6 +11,12 @@ const LandingPage = () => {
   const [code, setCode] = useState('');
   const navigate = useNavigate();
   const { user } = useAuth();
+  
+  const [openFaq, setOpenFaq] = useState(null);
+
+  const toggleFaq = (index) => {
+    setOpenFaq(openFaq === index ? null : index);
+  };
   
   const { scrollYProgress } = useScroll();
   const yBg = useTransform(scrollYProgress, [0, 1], ['0%', '50%']);
@@ -271,6 +277,123 @@ const LandingPage = () => {
             <h4>End-to-End Encryption</h4>
             <p>State-of-the-art encryption secures all sensitive communications and records.</p>
           </div>
+        </div>
+      </motion.section>
+
+      {/* Testimonials Section */}
+      <motion.section 
+        className="testimonials-section"
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.6 }}
+        style={{ marginTop: '5rem' }}
+      >
+        <h2 className="section-title">What Our Families Say</h2>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem', maxWidth: '1000px', margin: '0 auto', padding: '0 1rem' }}>
+          
+          <div className="glass-panel-premium interact-card" style={{ padding: '2rem' }}>
+            <div style={{ display: 'flex', gap: '0.2rem', marginBottom: '1rem', color: 'var(--color-accent-gold)' }}>
+              <Star size={20} fill="currentColor" /><Star size={20} fill="currentColor" /><Star size={20} fill="currentColor" /><Star size={20} fill="currentColor" /><Star size={20} fill="currentColor" />
+            </div>
+            <p className="text-muted" style={{ fontStyle: 'italic', marginBottom: '1.5rem', lineHeight: '1.6' }}>
+              "Vashavali finally gave us a place to securely map our ancestry without worrying about data brokers. The global portability feature is pure genius!"
+            </p>
+            <div>
+              <h4 style={{ margin: '0 0 0.2rem 0' }}>Sarah Jenkins</h4>
+              <span className="text-muted" style={{ fontSize: '0.85rem' }}>Joined 2024</span>
+            </div>
+          </div>
+
+          <div className="glass-panel-premium interact-card" style={{ padding: '2rem' }}>
+            <div style={{ display: 'flex', gap: '0.2rem', marginBottom: '1rem', color: 'var(--color-accent-gold)' }}>
+              <Star size={20} fill="currentColor" /><Star size={20} fill="currentColor" /><Star size={20} fill="currentColor" /><Star size={20} fill="currentColor" /><Star size={20} fill="currentColor" />
+            </div>
+            <p className="text-muted" style={{ fontStyle: 'italic', marginBottom: '1.5rem', lineHeight: '1.6' }}>
+              "The approval workflows ensure our tree remains accurate. I love how beautiful and interactive the node canvas is compared to legacy platforms."
+            </p>
+            <div>
+              <h4 style={{ margin: '0 0 0.2rem 0' }}>Michael Chen</h4>
+              <span className="text-muted" style={{ fontSize: '0.85rem' }}>Joined 2025</span>
+            </div>
+          </div>
+
+          <div className="glass-panel-premium interact-card" style={{ padding: '2rem' }}>
+            <div style={{ display: 'flex', gap: '0.2rem', marginBottom: '1rem', color: 'var(--color-accent-gold)' }}>
+              <Star size={20} fill="currentColor" /><Star size={20} fill="currentColor" /><Star size={20} fill="currentColor" /><Star size={20} fill="currentColor" /><Star size={20} fill="currentColor" />
+            </div>
+            <p className="text-muted" style={{ fontStyle: 'italic', marginBottom: '1.5rem', lineHeight: '1.6' }}>
+              "Setting up my Global Identity once and using it across both my parents' and in-laws' trees saved me so much time. Absolutely stunning UI."
+            </p>
+            <div>
+              <h4 style={{ margin: '0 0 0.2rem 0' }}>Priya Sharma</h4>
+              <span className="text-muted" style={{ fontSize: '0.85rem' }}>Joined 2025</span>
+            </div>
+          </div>
+
+        </div>
+      </motion.section>
+
+      {/* Expandable FAQ Section */}
+      <motion.section 
+        className="faq-section"
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.6 }}
+        style={{ marginTop: '5rem', marginBottom: '4rem' }}
+      >
+        <h2 className="section-title">Frequently Asked Questions</h2>
+        <div style={{ maxWidth: '800px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '1rem', padding: '0 1rem' }}>
+          
+          <div className="glass-panel-premium interact-card" onClick={() => toggleFaq(0)} style={{ padding: '1.5rem', cursor: 'pointer' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <h4 style={{ margin: 0 }}>Is Vashavali public or private?</h4>
+              {openFaq === 0 ? <ChevronUp size={20} className="text-muted" /> : <ChevronDown size={20} className="text-muted" />}
+            </div>
+            {openFaq === 0 && (
+              <motion.p initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} className="text-muted" style={{ marginTop: '1rem', marginBottom: 0, lineHeight: '1.6' }}>
+                Vashavali is an ultra-secure, invite-only platform. Your family tree data is not public and cannot be searched by unauthorized users.
+              </motion.p>
+            )}
+          </div>
+
+          <div className="glass-panel-premium interact-card" onClick={() => toggleFaq(1)} style={{ padding: '1.5rem', cursor: 'pointer' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <h4 style={{ margin: 0 }}>Can I test the platform without an account?</h4>
+              {openFaq === 1 ? <ChevronUp size={20} className="text-muted" /> : <ChevronDown size={20} className="text-muted" />}
+            </div>
+            {openFaq === 1 && (
+              <motion.p initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} className="text-muted" style={{ marginTop: '1rem', marginBottom: 0, lineHeight: '1.6' }}>
+                Yes, you can access our Global Demo Tree at /demo to experience the interactive pedigree mapping without needing an account.
+              </motion.p>
+            )}
+          </div>
+
+          <div className="glass-panel-premium interact-card" onClick={() => toggleFaq(2)} style={{ padding: '1.5rem', cursor: 'pointer' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <h4 style={{ margin: 0 }}>How does Vashavali protect my privacy?</h4>
+              {openFaq === 2 ? <ChevronUp size={20} className="text-muted" /> : <ChevronDown size={20} className="text-muted" />}
+            </div>
+            {openFaq === 2 && (
+              <motion.p initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} className="text-muted" style={{ marginTop: '1rem', marginBottom: 0, lineHeight: '1.6' }}>
+                Vashavali uses end-to-end encryption and isolated databases. We have a strict zero data-mining policy, ensuring your family tree is never shared or monetized.
+              </motion.p>
+            )}
+          </div>
+
+          <div className="glass-panel-premium interact-card" onClick={() => toggleFaq(3)} style={{ padding: '1.5rem', cursor: 'pointer' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <h4 style={{ margin: 0 }}>Is my family tree visible to the public?</h4>
+              {openFaq === 3 ? <ChevronUp size={20} className="text-muted" /> : <ChevronDown size={20} className="text-muted" />}
+            </div>
+            {openFaq === 3 && (
+              <motion.p initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} className="text-muted" style={{ marginTop: '1rem', marginBottom: 0, lineHeight: '1.6' }}>
+                No. Vashavali is strictly invite-only. Only members invited by a family super-user can view or edit the tree.
+              </motion.p>
+            )}
+          </div>
+
         </div>
       </motion.section>
 

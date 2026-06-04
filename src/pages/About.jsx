@@ -48,6 +48,46 @@ const About = () => {
         animate="visible"
         style={{ maxWidth: '900px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '2rem', position: 'relative', zIndex: 10, padding: '0 1rem' }}
       >
+        {/* Inject Person Schema */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Person",
+              "name": "Narendra Sinha",
+              "jobTitle": "Full Stack Developer",
+              "worksFor": {
+                "@type": "Organization",
+                "name": "Vashavali"
+              },
+              "url": "https://vashavali.vercel.app/about",
+              "sameAs": [
+                "https://github.com/yoyosina",
+                "https://www.linkedin.com/in/narendrasinha/"
+              ],
+              "image": "https://avatars.githubusercontent.com/yoyosina"
+            })
+          }}
+        />
+
+        {/* Vision & Core Philosophy */}
+        <motion.div variants={itemVariants} className="glass-panel-premium" style={{ padding: '3rem' }}>
+          <h3 style={{ marginBottom: '1.5rem', textAlign: 'center' }} className="overline">Our Core Philosophy</h3>
+          <p className="text-muted" style={{ lineHeight: '1.8', marginBottom: '1.5rem', fontSize: '1.05rem' }}>
+            Vashavali was born from a fundamental belief: your family's history belongs strictly to your family. In an era where digital platforms constantly harvest, analyze, and monetize user data, we stand firmly against this practice. Our absolute commitment to a <strong>"no data mining"</strong> policy ensures that your genealogical records, intimate family stories, and personal memories are never scanned for advertising, sold to third parties, or used for behavioral profiling. When you map your heritage on Vashavali, you do so with the absolute guarantee that your data remains locked within your family’s private ecosystem. We don’t track your behaviors, we don’t share your connections, and we don’t build marketing profiles based on your ancestry. Your legacy is sacred, and we treat it with the uncompromising privacy and respect it deserves.
+          </p>
+          <p className="text-muted" style={{ lineHeight: '1.8', marginBottom: '1.5rem', fontSize: '1.05rem' }}>
+            At the heart of our platform is the concept of a <strong>Global Identity</strong>. We recognize that individuals are not monolithic; they often belong to multiple, diverse extended family networks—such as maternal lineages, paternal lineages, and distinct branches created through marriage and partnerships. Instead of forcing you to recreate your profile, repeatedly upload your photos, and tediously rewrite your biography for every new tree you join, your Global Identity serves as your centralized, hyper-secure master profile. It acts as the single source of truth for who you are within the Vashavali ecosystem. You have full sovereignty over this identity. You dictate what information is shared, ensuring that the essence of your identity is preserved beautifully and accurately across every generation and family branch you choose to engage with.
+          </p>
+          <p className="text-muted" style={{ lineHeight: '1.8', marginBottom: '1.5rem', fontSize: '1.05rem' }}>
+            This architecture leads seamlessly into our promise of <strong>Global Portability</strong>. When you are securely invited to a new family tree—perhaps by a distant cousin or a new spouse—your Global Identity ports directly into that new space instantly. You immediately appear in the new tree with your curated profile picture, your life timeline, and your biographical details entirely intact. If you ever decide to update your profile picture, document a new life milestone, or refine your biography, that update automatically and intelligently propagates across every family tree you are a part of. This eliminates redundant data entry, resolves conflicting records, and guarantees that your living legacy remains consistent, continuously up-to-date, and fully under your direct control, regardless of how vast your family connections grow.
+          </p>
+          <p className="text-muted" style={{ lineHeight: '1.8', fontSize: '1.05rem' }}>
+            Ultimately, Vashavali is more than just a software application—it is a digital vault and an elegant canvas for the most important stories in the world: yours. By bridging cutting-edge technology with an unyielding ethical stance on privacy, we empower families across the globe to map their roots securely. Whether you are preserving ancient lineage data or celebrating the birth of a new generation, our platform is engineered to support the complex, beautiful, and deeply interconnected tapestry of human relationships. We invite you to experience a space where the past is honored, the present is celebrated, and the future is securely written.
+          </p>
+        </motion.div>
+
         {/* Developer Profile Section */}
         <motion.div variants={itemVariants} className="glass-panel-premium interact-card" style={{ padding: '3rem', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
           <div style={{ width: '100px', height: '100px', borderRadius: '50%', background: 'var(--color-accent-gold)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.5rem', overflow: 'hidden' }}>

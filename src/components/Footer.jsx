@@ -22,6 +22,7 @@ const Footer = () => {
         
         <div className="footer-links">
           <Link to="/about" className="footer-link">About</Link>
+          <Link to="/security" className="footer-link">Security</Link>
           <a href="https://github.com/yoyosina" target="_blank" rel="noopener noreferrer" className="footer-icon-link">
             <GithubIcon size={18} />
           </a>
