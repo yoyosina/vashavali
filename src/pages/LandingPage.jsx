@@ -274,16 +274,6 @@ const LandingPage = () => {
         </div>
       </motion.section>
 
-      <footer className="landing-footer" style={{ marginTop: '4rem', paddingBottom: '2rem' }}>
-        <div className="glass-panel-premium text-center" style={{ padding: '1.5rem', maxWidth: '800px', margin: '0 auto' }}>
-          <p className="text-muted" style={{ fontSize: '0.9rem', margin: 0 }}>
-            Platform Architect: Vashavali Development Team
-            <br/>
-            {/* eslint-disable-next-line no-undef */}
-            v{__APP_VERSION__} &bull; Last Updated: {__BUILD_DATE__}
-          </p>
-        </div>
-      </footer>
     </div>
   );
 };
