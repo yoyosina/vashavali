@@ -279,7 +279,8 @@ const LandingPage = () => {
           <p className="text-muted" style={{ fontSize: '0.9rem', margin: 0 }}>
             Platform Architect: Vashavali Development Team
             <br/>
-            Last Updated: June 2026
+            {/* eslint-disable-next-line no-undef */}
+            v{__APP_VERSION__} &bull; Last Updated: {__BUILD_DATE__}
           </p>
         </div>
       </footer>

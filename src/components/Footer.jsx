@@ -14,6 +14,9 @@ const Footer = () => {
           <img src="/logo.png" alt="Vashavali" style={{ height: '30px', opacity: 0.8 }} />
           <p className="copyright text-muted">
             &copy; {new Date().getFullYear()} Vashavali. Crafted by Narendra Sinha.
+            <br />
+            {/* eslint-disable-next-line no-undef */}
+            v{__APP_VERSION__} &bull; Updated {__BUILD_DATE__}
           </p>
         </div>
         

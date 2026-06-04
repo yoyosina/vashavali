@@ -1,8 +1,13 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import packageJson from './package.json'
 
 // https://vite.dev/config/
 export default defineConfig({
+  define: {
+    __APP_VERSION__: JSON.stringify(packageJson.version),
+    __BUILD_DATE__: JSON.stringify(new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }))
+  },
   base: '/',
   plugins: [react()],
   build: {
