@@ -52,8 +52,63 @@ const LandingPage = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
       >
+        {/* Inject Structured Data */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@graph": [
+                {
+                  "@type": "FAQPage",
+                  "mainEntity": [
+                    {
+                      "@type": "Question",
+                      "name": "How does Vashavail protect my privacy?",
+                      "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Vashavail uses end-to-end encryption and isolated databases. We have a strict zero data-mining policy, ensuring your family tree is never shared or monetized."
+                      }
+                    },
+                    {
+                      "@type": "Question",
+                      "name": "Is my family tree visible to the public?",
+                      "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "No. Vashavail is strictly invite-only. Only members invited by a family super-user can view or edit the tree."
+                      }
+                    }
+                  ]
+                },
+                {
+                  "@type": "HowTo",
+                  "name": "How to join Vashavail",
+                  "description": "Step-by-step guide on how to join a secure family tree on the Vashavail platform.",
+                  "step": [
+                    {
+                      "@type": "HowToStep",
+                      "name": "Receive an Invite",
+                      "text": "Obtain a unique Family Code from your family's designated super-user."
+                    },
+                    {
+                      "@type": "HowToStep",
+                      "name": "Enter the Code",
+                      "text": "Navigate to the Vashavail landing page and enter your unique code into the 'Access a Family Tree' input field."
+                    },
+                    {
+                      "@type": "HowToStep",
+                      "name": "Create a Global Profile",
+                      "text": "Sign in and set up your secure global identity, which will seamlessly port into your invited family tree."
+                    }
+                  ]
+                }
+              ]
+            })
+          }}
+        />
+
         <div className="hero-logo-wrapper">
-          <img src="/logo.png" alt="Vanshavali Logo" className="hero-logo" />
+          <img src="/logo.png" alt="Vashavail Logo" className="hero-logo" />
         </div>
         
         <h1 className="awwwards-title">
@@ -82,7 +137,7 @@ const LandingPage = () => {
           <h3 className="overline">Our Mission</h3>
           <h2>Connecting the Past, Present, and Future</h2>
           <p>
-            Your family's history is deeply personal. Vanshavali provides a completely isolated, 
+            Your family's history is deeply personal. Vashavail provides a completely isolated, 
             invite-only sanctuary to weave your family narrative. No public directories. No data mining. 
             Just your heritage, beautifully preserved.
           </p>
@@ -163,6 +218,51 @@ const LandingPage = () => {
           <p>Propose edits, upload memories, and grow your family's tree together organically.</p>
         </div>
       </motion.div>
+      <motion.section
+        className="security-privacy-section"
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.6 }}
+        style={{ marginTop: '4rem' }}
+      >
+        <div className="security-content glass-panel-premium" style={{ margin: '0 auto', maxWidth: '800px', textAlign: 'left' }}>
+          <h2>Uncompromising Security & Privacy</h2>
+          <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+            At Vashavail, we believe your family's history is the most sensitive data imaginable. 
+            That is why our architecture is built from the ground up with a privacy-first mindset. 
+            Unlike public social networks or commercial genealogy platforms, we operate on a strict 
+            "zero data mining" policy. Your legacy is yours, and we explicitly do not analyze, sell, 
+            or monetize your data in any way.
+          </p>
+          <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+            Our infrastructure employs state-of-the-art end-to-end encryption for all sensitive 
+            communications and records. Every family tree exists within an isolated database environment, 
+            ensuring that cross-contamination or unauthorized public access is technically impossible.
+          </p>
+          <p style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+            Access is heavily regulated by designated super-users within your family. Every member must 
+            be explicitly invited, and every contribution—whether it is an uploaded photograph, a date 
+            of birth, or a newly discovered relative—is tracked and authenticated. Your digital legacy 
+            is preserved in a secure vault, designed to last for generations without exposure to the open internet.
+          </p>
+          <p style={{ lineHeight: '1.6' }}>
+            We continuously audit our systems and update our security protocols to stay ahead of modern 
+            cybersecurity threats, giving you the peace of mind to focus on what truly matters: 
+            celebrating your heritage in a completely private environment.
+          </p>
+        </div>
+      </motion.section>
+
+      <footer className="landing-footer" style={{ marginTop: '4rem', paddingBottom: '2rem' }}>
+        <div className="glass-panel-premium text-center" style={{ padding: '1.5rem', maxWidth: '800px', margin: '0 auto' }}>
+          <p className="text-muted" style={{ fontSize: '0.9rem', margin: 0 }}>
+            Platform Architect: Vashavail Development Team
+            <br/>
+            Last Updated: June 2026
+          </p>
+        </div>
+      </footer>
     </div>
   );
 };
